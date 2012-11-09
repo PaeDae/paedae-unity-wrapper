@@ -15,7 +15,7 @@ public static class PaeDae {
   #endregion
 
   #region PaeDae Constructor
-    static PaeDae(){
+    static PaeDae() {
       // iOS only until we have our Android SDK finalized
       isSupportedPaedaePlatform = (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android);
     }
@@ -29,9 +29,36 @@ public static class PaeDae {
       
       // Statically link the execs for iOS
       // This is how we call our methods!
-      [DllImport (iosDLLName)] private static extern void _someFunction();
-      [DllImport (iosDLLName)] private static extern bool _someOtherFunction();
+      [DllImport (iosDLLName)] private static extern void _SomeFunction();
+      [DllImport (iosDLLName)] private static extern bool _SomeOtherFunction();
+
+      // PaeDae Initialization
+      [DllImport (iosDLLName)] private static extern void _InitWithKey(string gameKey);
+      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfo(string gameKey, hashtable playerInfo);
+      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndDelegate(string gameKey, object delegate);
+      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfoAndDelegate(string gameKey, hashtable playerInfo, object delegate);
+      
+      // Show Prize
+      [DllImport (iosDLLName)] private static extern void _ShowPrize();
+      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptions(hashtable optionsDictionary);
+      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithDelegate(object delegate);
+      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptionsAndDelegate(hashtable optionsDictionary, object delegate);
+      
+      // Update Player Information
+      [DllImport (iosDLLName)] private static extern void _updatePlayerInfo(hashtable playerInfo);
       
     #endif
   #endregion
+
+  // #region Android Setup
+  //   #if UNITY_ANDROID
+  //     private static readonly AndroidJavaClass KiipInterface = new AndroidJavaClass("me.PaeDae.unity.PaeDaeInterface");
+  //     
+  //     private static AndroidJavaObject CurrentActivity() {
+  //       AndroidJavaClass UnityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+  //       AndroidJavaObject activity = UnityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
+  //       return activity;
+  //     }
+  //   #endif
+  // #endregion
 }
