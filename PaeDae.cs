@@ -1,8 +1,5 @@
 // First stab at creating a wrapper/bridge between Unity and our SDKs.
-// Regions 
-
-
-
+// NOTE: Regions organize code structure in an outline hierarchy in VisualStudio
 
 // Call Unity and service interoperability modules
 using UnityEngine;
@@ -29,23 +26,23 @@ public static class PaeDae {
       
       // Statically link the execs for iOS
       // This is how we call our methods!
-      [DllImport (iosDLLName)] private static extern void _SomeFunction();
-      [DllImport (iosDLLName)] private static extern bool _SomeOtherFunction();
+      // [DllImport (iosDLLName)] private static extern void _SomeFunction();
+      // [DllImport (iosDLLName)] private static extern bool _SomeOtherFunction();
 
       // PaeDae Initialization
       [DllImport (iosDLLName)] private static extern void _InitWithKey(string gameKey);
-      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfo(string gameKey, hashtable playerInfo);
+      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfo(string gameKey, dictionary playerInfo);
       [DllImport (iosDLLName)] private static extern void _InitWithKeyAndDelegate(string gameKey, object delegate);
-      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfoAndDelegate(string gameKey, hashtable playerInfo, object delegate);
+      [DllImport (iosDLLName)] private static extern void _InitWithKeyAndPlayerInfoAndDelegate(string gameKey, dictionary playerInfo, object delegate);
       
       // Show Prize
       [DllImport (iosDLLName)] private static extern void _ShowPrize();
-      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptions(hashtable optionsDictionary);
+      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptions(dicitonary optionsDictionary);
       [DllImport (iosDLLName)] private static extern void _ShowPrizeWithDelegate(object delegate);
-      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptionsAndDelegate(hashtable optionsDictionary, object delegate);
+      [DllImport (iosDLLName)] private static extern void _ShowPrizeWithOptionsAndDelegate(dictionary optionsDictionary, object delegate);
       
       // Update Player Information
-      [DllImport (iosDLLName)] private static extern void _updatePlayerInfo(hashtable playerInfo);
+      [DllImport (iosDLLName)] private static extern void _updatePlayerInfo(dictionary playerInfo);
       
     #endif
   #endregion
@@ -61,4 +58,17 @@ public static class PaeDae {
   //     }
   //   #endif
   // #endregion
+
+  #region PaeDae Public Interace
+    // Initialization
+    public static void Initialize(string gameKey) {
+      if (isSupportedPaeDaePlatform) {
+        #if UNITY_IPHONE
+          _InitWithKey(gameKey)
+        // #elif UNITY_ANDROID
+         // Initialize Android
+        #endif
+      }
+    } 
+  #endregion
 }
