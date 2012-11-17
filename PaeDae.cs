@@ -55,4 +55,14 @@ public class PaeDaeUnity {
 	{
 		// Handle callback here
 	}
+
+	public static void PrizeWillUnload (string textString)
+	{
+		// Handle callback here
+	}
+
+	public static void PrizeWillDisplay (string textString)
+	{
+		// Handle callback here
+	}
 }

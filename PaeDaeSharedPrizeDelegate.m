@@ -23,9 +23,22 @@ static PaeDaeSharedPrizeDelegate *sharedDelegate = nil;
 
 #pragma mark - PaeDae Prize Callbacks
 
+- (BOOL)PaeDae_PrizeWillUnload:(UIView *)view
+{
+    NSLog(@"PRIZE UNLOADED");
+    UnitySendMessage("GameObject", "PrizeWillUnload", "This is a test!");
+    return NO;
+}
+
+- (void)PaeDae_PrizeWillDisplay:(UIView *)view
+{
+    NSLog(@"PRIZE UNLOADED");
+    UnitySendMessage("GameObject", "PrizeWillDisplay", "This is a test!");
+}
+
 - (void)PaeDae_PrizeUnloaded {
-	NSLog(@"PRIZE UNLOADED");
-  UnitySendMessage("GameObject", "PrizeUnloaded", "This is a test!");
+    NSLog(@"PRIZE UNLOADED");
+    UnitySendMessage("GameObject", "PrizeUnloaded", "This is a test!");
 }
 
 @end
