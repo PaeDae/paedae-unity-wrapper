@@ -38,10 +38,21 @@ public class PaeDaeUnity {
 		if (Application.platform != RuntimePlatform.OSXEditor)
 			_InitWithKey();
 	}
-	// Delegates
+
+	// Callbacks
 	
-	public static void UnityCallback (string textString)
+	public static void Initialized (string textString)
 	{
-		Debug.Log(textString);
+		// Handle callback here
+	}
+
+	public static void InitializationFailed (string textString)
+	{
+		// Handle callback here
+	}
+
+	public static void PrizeUnloaded (string textString)
+	{
+		// Handle callback here
 	}
 }

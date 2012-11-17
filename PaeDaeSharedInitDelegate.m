@@ -24,12 +24,13 @@ static PaeDaeSharedInitDelegate *sharedDelegate = nil;
 - (void)PaeDae_Initialized
 {
     NSLog(@"TESTING UNITY CALLBACK!");
-    UnitySendMessage("GameObject", "UnityCallback", "This is a test!");
+    UnitySendMessage("GameObject", "Initialized", "This is a test!");
 }
 
 - (void)PaeDae_InitializeFailed
 {
     NSLog(@"INITIALIZATION FAILED");
+    UnitySendMessage("GameObject", "InitializationFailed", "This is a test!");
 }
 
 @end
