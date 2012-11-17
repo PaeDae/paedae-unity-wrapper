@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PaeDaePrizeSDK.h"
+#import "PaeDaeSharedInitDelegate.h"
 
 @interface PaeDaeUnityImpl : NSObject
+
+- (void)PaeDae_Initialized;
 
 @end

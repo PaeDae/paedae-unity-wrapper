@@ -1,5 +1,5 @@
 //
-//  PaeDaeUnityImpl.m
+//  PaeDaeUnityImpl.mm
 //  
 //
 //  Created by Greg Morrison on 11/13/12.
@@ -7,7 +7,6 @@
 //
 
 #import "PaeDaeUnityImpl.h"
-#import "PaeDaePrizeSDK.h"
 
 @implementation PaeDaeUnityImpl
 
@@ -30,8 +29,18 @@
 
 extern "C"
 {
-    void _ShowPrize()
+    void _InitWithKey()
+    {
+        [[PaeDaePrizeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c" andDelegate:[PaeDaeSharedInitDelegate sharedDelegate]];
+    }
+    
+    void _ShowPrizeWithOptionsAndDelegate()
     {
         [[PaeDaePrizeSDK sharedManager] showPrize];
+    }
+
+    void _UpdatePlayerInfo()
+    {
+    
     }
 }
