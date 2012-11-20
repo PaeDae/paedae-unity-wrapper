@@ -7,6 +7,8 @@
 //
 
 #import "PaeDaeUnityImpl.h"
+#import "PaeDaeSharedInitDelegate.h"
+#import "PaeDaeSharedPrizeDelegate.h"
 
 @implementation PaeDaeUnityImpl
 
@@ -36,7 +38,7 @@ extern "C"
     
     void _ShowPrizeWithOptionsAndDelegate()
     {
-        [[PaeDaePrizeSDK sharedManager] showPrize];
+        [[PaeDaePrizeSDK sharedManager] showPrizeWithDelegate: [PaeDaeSharedPrizeDelegate sharedDelegate]];
     }
 
     void _UpdatePlayerInfo()
