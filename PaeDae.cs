@@ -41,27 +41,27 @@ public class PaeDaeUnity {
 
 	// Callbacks
 	
-	public static void Initialized (string textString)
+	public static void Initialized (string callBack)
 	{
 		// Handle callback here
 	}
 
-	public static void InitializationFailed (string textString)
+	public static void InitializationFailed (string callBack)
 	{
 		// Handle callback here
 	}
 
-	public static void PrizeUnloaded (string textString)
+	public static void PrizeUnloaded (string callBack)
 	{
 		// Handle callback here
 	}
 
-	public static void PrizeWillUnload (string textString)
+	public static void PrizeWillUnload (string callBack)
 	{
 		// Handle callback here
 	}
 
-	public static void PrizeWillDisplay (string textString)
+	public static void PrizeWillDisplay (string callBack)
 	{
 		// Handle callback here
 	}
