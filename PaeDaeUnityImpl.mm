@@ -1,9 +1,9 @@
 //
 //  PaeDaeUnityImpl.mm
-//  
+//
 //
 //  Created by Greg Morrison on 11/13/12.
-//
+//  Copyright (c) 2012 PaeDae Inc. All rights reserved.
 //
 
 #import "PaeDaeUnityImpl.h"
@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        
+
     }
 
     return self;
@@ -35,7 +35,7 @@ extern "C"
     {
         [[PaeDaePrizeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c" andDelegate:[PaeDaeSharedInitDelegate sharedDelegate]];
     }
-    
+
     void _ShowPrizeWithOptionsAndDelegate()
     {
         [[PaeDaePrizeSDK sharedManager] showPrizeWithDelegate: [PaeDaeSharedPrizeDelegate sharedDelegate]];
@@ -43,6 +43,6 @@ extern "C"
 
     void _UpdatePlayerInfo()
     {
-    
+
     }
 }

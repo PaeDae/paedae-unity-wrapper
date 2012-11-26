@@ -1,3 +1,5 @@
+//  Copyright (c) 2012 PaeDae Inc. All rights reserved.
+
 using UnityEngine;
 using System.Runtime.InteropServices;
 
@@ -8,17 +10,17 @@ public class PaeDaeUnity {
 	/* Private Methods */
 
 	[DllImport ("__Internal")]
-	private static extern void _ShowPrizeWithOptionsAndDelegate ();	
+	private static extern void _ShowPrizeWithOptionsAndDelegate ();
 
 	[DllImport ("__Internal")]
-	private static extern void _UpdatePlayerInfo ();	
+	private static extern void _UpdatePlayerInfo ();
 
 	[DllImport ("__Internal")]
 	private static extern void _InitWithKey ();
 	/* Public Methods */
 
 	// Show Prize Methods
-	
+
 	public static void ShowPrizeWithOptionsAndDelegate()
 	{
 		// Call plugin only when running on real device
@@ -40,7 +42,7 @@ public class PaeDaeUnity {
 	}
 
 	// Callbacks
-	
+
 	public static void Initialized (string callBack)
 	{
 		// Handle callback here
