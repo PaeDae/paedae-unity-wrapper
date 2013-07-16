@@ -7,8 +7,6 @@
 //
 
 #import "PaeDaeUnityImpl.h"
-#import "PaeDaeSharedInitDelegate.h"
-#import "PaeDaeSharedPrizeDelegate.h"
 
 @implementation PaeDaeUnityImpl
 
@@ -33,12 +31,14 @@ extern "C"
 {
     void _InitWithKey()
     {
-        [[PaeDaePrizeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c" andDelegate:[PaeDaeSharedInitDelegate sharedDelegate]];
+	// add YOUR own key here
+        [[PaeDaeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c"];
     }
 
     void _ShowPrizeWithOptionsAndDelegate()
     {
-        [[PaeDaePrizeSDK sharedManager] showPrizeWithDelegate: [PaeDaeSharedPrizeDelegate sharedDelegate]];
+        //[[PaeDaeSDK sharedManager] showPrizeWithDelegate: [PaeDaeSharedPrizeDelegate sharedDelegate]];
+	[[PaeDaeSDK sharedManager] showAd];
     }
 
     void _UpdatePlayerInfo()

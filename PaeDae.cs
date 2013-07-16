@@ -10,12 +10,6 @@ public class PaeDaeUnity {
 	/* Private Methods */
 
 	[DllImport ("__Internal")]
-	private static extern void _ShowPrizeWithOptionsAndDelegate ();
-
-	[DllImport ("__Internal")]
-	private static extern void _UpdatePlayerInfo ();
-
-	[DllImport ("__Internal")]
 	private static extern void _InitWithKey ();
 	/* Public Methods */
 
