@@ -7,9 +7,9 @@
 ### Within your Unity project:
 
 #### Importing PaeDaeUnity File
-1. Navigate to Assets->Import Package->Custom Package
-2. Navigate to the PaeDae.unitypackage and click 'Open'
-3. A dialog box will pop-up notifying you of the assets being imported. Click 'Import' to complete the process
+1. Navigate to Assets->Import Package->Custom Package.
+2. Navigate to the PaeDae.unitypackage and click 'Open'.
+3. A dialog box will pop-up notifying you of the assets being imported. Click 'Import' to complete the process.
 
 #### Compile Unity to iOS
 1. File -> Build & Run
@@ -46,13 +46,13 @@ _Including any other .a files might result in unexpected errors._
 
 Ensure AdSupport.framework is present in your Xcode project. Follow these steps to add the framework to your project:
 
-1. Click the top-level 'Unity-iPhone' project in Xcode
-2. Click your selected target (e.g. Unity-iPhone)
-3. Navigate to the 'Build Phases' tab
-4. Open the 'Link Binary With Libraries' pane
-5. Click the + sign, select Adsupport.framework, and click 'Add'
-6. SDK Interaction is handled in the PaeDaeUnityImpl.mm file
-6. Initialize the SDK by supplying your gamekey string in the _InitWithKey() method. You can conveniently place your string directly in the @"" NSString definition
+1. Click the top-level 'Unity-iPhone' project in Xcode.
+2. Click your selected target (e.g. Unity-iPhone).
+3. Navigate to the 'Build Phases' tab.
+4. Open the 'Link Binary With Libraries' pane.
+5. Click the + sign, select Adsupport.framework, and click 'Add'.
+6. SDK Interaction is handled in the `PaeDaeUnityImpl.mm` file.
+6. Initialize the SDK by supplying your gamekey string in the `_InitWithKey()` method. You can conveniently place your string directly in the `@"" NSString` definition.
 
 ### Linker Flags
 
