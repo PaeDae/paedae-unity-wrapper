@@ -34,3 +34,13 @@ Open the 'Link Binary With Libraries' pane
 Click the + sign, select Adsupport.framework, and click 'Add'
 SDK Interaction is handled in the PaeDaeUnityImpl.mm file
 Initialize the SDK by supplying your gamekey string in the _InitWithKey() method. You can conveniently place your string directly in the @"" NSString definition
+
+Linker Flags:
+
+Make sure you add the following to Other Linker Flags:
+-lz
+-all_load
+-ObjC
+
+This is under Targets (Unity-iPhone->Build Settings)
+
