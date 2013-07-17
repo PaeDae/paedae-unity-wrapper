@@ -17,10 +17,19 @@ In "Build Setting Window", under Platform choose "iOS", and click the "Build and
 Once Xcode Open follow the Unity Xcode Project instructions.
 
 Unity Xcode Project
-Copy the following header and main files into the 'Classes' directory: 
-PaeDaeUnityImpl.h PaeDaeUnityImpl.mm
 
-Copy the PaeDaePrizeSDK folder into your project (url for the sdk: https://github.com/PaeDae/paedae-ios-sdk).
+Copy the following header and main files into the 'Classes' directory: 
+	- PaeDaeUnityImpl.h 
+	- PaeDaeUnityImpl.mm
+
+Copy the PaeDaeSDK folder into your project (url for the sdk: https://github.com/PaeDae/paedae-ios-sdk).
+
+You can remove the extra folders in the PaeDaeSDK, unless you're targetting certain architecture. 
+The bare minimum files is 
+	- libPaeDaeSDK.a 
+	- PaeDaeSDK.h 
+
+Including any other .a files might result in unexpected errors. 
 
 In Classes/AppController.mm file, import the Pae Dae SDK:
 \#import "PaeDaeSDK.h"
@@ -28,7 +37,7 @@ In Classes/AppController.mm file, import the Pae Dae SDK:
 Ensure AdSupport.framework is present in your Xcode project. Follow these steps to add the framework to your project:
 
 Click the top-level 'Unity-iPhone' project in Xcode
-Click your selected target
+Click your selected target (e.g. Unity-iPhone)
 Navigate to the 'Build Phases' tab
 Open the 'Link Binary With Libraries' pane
 Click the + sign, select Adsupport.framework, and click 'Add'
