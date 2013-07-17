@@ -29,20 +29,16 @@
 
 extern "C"
 {
-    void _InitWithKey()
+    void _Init()
     {
-	// add YOUR own key here
+        // add YOUR own key here
         [[PaeDaeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c"];
     }
 
-    void _ShowPrizeWithOptionsAndDelegate()
+    void _ShowAd()
     {
-        //[[PaeDaeSDK sharedManager] showPrizeWithDelegate: [PaeDaeSharedPrizeDelegate sharedDelegate]];
-	[[PaeDaeSDK sharedManager] showAd];
+        [[PaeDaeSDK sharedManager] showAd];
     }
 
-    void _UpdatePlayerInfo()
-    {
 
-    }
 }

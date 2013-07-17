@@ -10,55 +10,25 @@ public class PaeDaeUnity {
 	/* Private Methods */
 
 	[DllImport ("__Internal")]
-	private static extern void _InitWithKey ();
+	private static extern void _ShowAd ();	
+
+	[DllImport ("__Internal")]
+	private static extern void _Init ();
 	/* Public Methods */
 
-	// Show Prize Methods
-
-	public static void ShowPrizeWithOptionsAndDelegate()
+	// Show Ad Methods
+	
+	public static void ShowAd()
 	{
 		// Call plugin only when running on real device
 		if (Application.platform != RuntimePlatform.OSXEditor)
-			_ShowPrizeWithOptionsAndDelegate();
+			_ShowAd();
 	}
 
-	public static void UpdatePlayerInfo()
-	{
-		// Call plugin only when running on real device
-		if (Application.platform != RuntimePlatform.OSXEditor)
-			_UpdatePlayerInfo();
-	}
-
-	public static void InitWithKey()
+	public static void Init()
 	{
 		if (Application.platform != RuntimePlatform.OSXEditor)
-			_InitWithKey();
+			_Init();
 	}
 
-	// Callbacks
-
-	public static void Initialized (string callBack)
-	{
-		// Handle callback here
-	}
-
-	public static void InitializationFailed (string callBack)
-	{
-		// Handle callback here
-	}
-
-	public static void PrizeUnloaded (string callBack)
-	{
-		// Handle callback here
-	}
-
-	public static void PrizeWillUnload (string callBack)
-	{
-		// Handle callback here
-	}
-
-	public static void PrizeWillDisplay (string callBack)
-	{
-		// Handle callback here
-	}
 }

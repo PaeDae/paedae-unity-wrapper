@@ -22,8 +22,8 @@ PaeDaeUnityImpl.h PaeDaeUnityImpl.mm
 
 Copy the PaeDaePrizeSDK folder into your project (url for the sdk: https://github.com/PaeDae/paedae-ios-sdk).
 
-In Classes/AppCtronller.mm file, import the Pae Dae SDK:
-#import "PaeDaeSDK.h"
+In Classes/AppController.mm file, import the Pae Dae SDK:
+\#import "PaeDaeSDK.h"
 
 Ensure AdSupport.framework is present in your Xcode project. Follow these steps to add the framework to your project:
 
