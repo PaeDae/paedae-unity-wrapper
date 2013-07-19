@@ -52,7 +52,7 @@ Ensure AdSupport.framework is present in your Xcode project. Follow these steps 
 4. Open the 'Link Binary With Libraries' pane.
 5. Click the + sign, select Adsupport.framework, and click 'Add'.
 6. SDK Interaction is handled in the `PaeDaeUnityImpl.mm` file.
-6. Initialize the SDK by supplying your gamekey string in the `_InitWithKey()` method. You can conveniently place your string directly in the `@"" NSString` definition.
+6. Initialize the SDK by supplying your gamekey string in the `_Init()` method. You can conveniently place your string directly in the `@"" NSString` definition.
 
 ### Linker Flags
 
