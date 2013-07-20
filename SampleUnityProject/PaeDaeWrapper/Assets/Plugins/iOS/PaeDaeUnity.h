@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "PaeDaeSDK.h"
 
-@interface PaeDaeUnityImpl : NSObject
+@interface PaeDaeUnity : NSObject
 
-- (void)PaeDae_Initialized;
+- (void) _PaeDaeWrapperInit:(const char *)key;
+- (void) _PaeDaeWrapperShowAd:(const char *)zoneId;
 
 @end

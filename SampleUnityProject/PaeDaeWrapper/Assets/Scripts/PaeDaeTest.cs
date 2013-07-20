@@ -17,6 +17,9 @@ public class PaeDaeTest : MonoBehaviour
 		
 		PaeDaeWrapper.Instance.onInitialized += onPaeDaeInitialized;	
 		PaeDaeWrapper.Instance.onOnInitializeFailed += onPaeDaeInitializeFailed;
+		PaeDaeWrapper.Instance.onAdWillDisplay += onAdWillDisplay;
+		PaeDaeWrapper.Instance.onAdWillUnload += onAdWillUnload;
+		PaeDaeWrapper.Instance.onAdUnavailable += onAdUnavailable;
 		
 		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c");    //replace with your app's key
 		
@@ -29,8 +32,15 @@ public class PaeDaeTest : MonoBehaviour
 	    
 	}
 	
-	void OnGUI () {
-         GUI.Label(new Rect(10, 10, 500, 20), LabelMessage);
+	void OnGUI () 
+	{
+        GUI.Label(new Rect(10, 10, 500, 20), LabelMessage);
+		
+		Event Mouse = Event.current;
+        if (Mouse.clickCount == 2)
+        {
+            PaeDaeWrapper.Instance.ShowAd ("default.milestone");
+        }
     }
 	
 	// PaeDaeWrapper init event handlers

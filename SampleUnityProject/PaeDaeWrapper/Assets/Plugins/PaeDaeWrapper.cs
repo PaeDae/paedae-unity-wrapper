@@ -18,29 +18,23 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	private static readonly PaeDaeWrapper instance = new PaeDaeWrapper();
 	
 	public delegate void onInitializedEvent();
-	public event onInitializedEvent onInitialized;
-	
 	public delegate void onInitializeFailedEvent();
-	public event onInitializeFailedEvent onOnInitializeFailed;
-	
 	public delegate void onAdWillDisplayEvent();
-	public event onAdWillDisplayEvent onAdWillDisplay;
-	
 	public delegate void onAdWillUnloadEvent();
-	public event onAdWillUnloadEvent onAdWillUnload;
-	
 	public delegate void onAdUnavailableEvent();
-	public event onAdUnavailableEvent onAdUnavailable;
 	
+	public event onInitializedEvent onInitialized = null;
+	public event onInitializeFailedEvent onOnInitializeFailed = null;
+	public event onAdWillDisplayEvent onAdWillDisplay = null;
+	public event onAdWillUnloadEvent onAdWillUnload = null;
+	public event onAdUnavailableEvent onAdUnavailable = null;
 	
-	/*
-	 * External function declarations implemented in C
-	 */
+	// External function declarations implemented in C
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperInit ();
+	private static extern void _PaeDaeWrapperInit (string key);
 	
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperShowAd ();	
+	private static extern void _PaeDaeWrapperShowAd (string zoneId);	
 
 	// Instantiate a singleton instance of the PaeDae Unity Wrapper 
 	public static PaeDaeWrapper Instance 
@@ -56,50 +50,50 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	{
 	    if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperInit();
+			_PaeDaeWrapperInit (key);
 		}
 		else
 		{
-		    instance.onOnInitializeFailed();
+		    if (instance.onOnInitializeFailed != null) instance.onOnInitializeFailed ();
 		}
 	}
 	
-	public void ShowAd() 
+	public void ShowAd (string zoneId) 
 	{
-		if (Application.platform != RuntimePlatform.IPhonePlayer) 
+		if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperShowAd();
+			_PaeDaeWrapperShowAd (zoneId);
 		}
 		else
 		{
-		    instance.onAdUnavailable();
+		    if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
 		}
 	}
 	
 	// PaeDae Init Delegate unity messages from C
-	public static void Initialized()
+	public static void Initialized ()
 	{
-		instance.onInitialized();
+		if (instance.onInitialized != null) instance.onInitialized ();
 	}
 	
-	public static void InitializeFailed()
+	public static void InitializeFailed ()
 	{
-		instance.onOnInitializeFailed();
+		if (instance.onOnInitializeFailed != null) instance.onOnInitializeFailed ();
 	}
 	
 	// PaeDae Ad Delegate unity messages from 
-	public static void AdWillDisplay() 
+	public static void AdWillDisplay () 
 	{
-		instance.onAdWillDisplay();
+		if (instance.onAdWillDisplay != null) instance.onAdWillDisplay ();
 	}
 	
-	public static void AdWillUnload()
+	public static void AdWillUnload ()
 	{
-		instance.onAdWillUnload();
+		if (instance.onAdWillUnload != null) instance.onAdWillUnload ();
 	}
 	
-	public static void AdUnavailable()
+	public static void AdUnavailable ()
 	{
-		instance.onAdUnavailable();
+		if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
 	}
 }

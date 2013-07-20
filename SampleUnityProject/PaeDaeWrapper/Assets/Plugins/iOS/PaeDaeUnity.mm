@@ -8,7 +8,7 @@
 
 #import "PaeDaeUnityImpl.h"
 
-@implementation PaeDaeUnityImpl
+@implementation PaeDaeUnity
 
 - (id)init
 {
@@ -29,16 +29,16 @@
 
 extern "C"
 {
-    void _Init(const char* key)
+    void _PaeDaeWrapperInit(const char* key)
     {
-        // add YOUR own key here
-        [[PaeDaeSDK sharedManager] initWithKey:@"b00015e0-5cf7-012f-c818-12313f04f84c"];
+        [[PaeDaeSDK sharedManager] initWithKey:[NSString stringWithUTF8String:key] andDelegate:[PaeDaeSharedDelegate sharedDelegate]];
     }
 
-    void _ShowAd()
+    void _ShowAd(const char *zone_id)
     {
-        [[PaeDaeSDK sharedManager] showAd];
+        NSDictionary *adOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSString stringWithUTF8String:zone_id], @"zone_id"
+                                   , nil];
+        [[PaeDaeSDK sharedManager] showAdWithOptions:options andDelegate:[PaeDaeSharedDelegate sharedDelegate]];
     }
-
-
 }
