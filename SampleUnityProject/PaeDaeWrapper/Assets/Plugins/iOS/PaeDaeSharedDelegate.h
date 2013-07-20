@@ -8,5 +8,5 @@
 #import "PaeDaeSDK.h"
 
 @interface PaeDaeSharedDelegate : NSObject<PaeDaeInitDelegate, PaeDaeAdDelegate>
-
++ (id) sharedDelegate;
 @end
