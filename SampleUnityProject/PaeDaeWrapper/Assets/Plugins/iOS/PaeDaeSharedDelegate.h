@@ -8,5 +8,11 @@
 #import "PaeDaeSDK.h"
 
 @interface PaeDaeSharedDelegate : NSObject<PaeDaeInitDelegate, PaeDaeAdDelegate>
-+ (id) sharedDelegate;
+{
+	NSString *gameObjectName;
+}
+
+@property (nonatomic, retain) NSString *gameObjectName;
+
++ (PaeDaeSharedDelegate *) sharedDelegate;
 @end

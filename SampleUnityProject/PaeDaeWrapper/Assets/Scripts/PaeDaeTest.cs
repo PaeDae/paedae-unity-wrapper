@@ -7,7 +7,7 @@ public class PaeDaeTest : MonoBehaviour
 	
 	void Awake ()
 	{
-		Debug.Log ("Awake called");
+		Debug.Log ("Awake called w/ game object: " + gameObject.name);
 	}
 	
 	// Use this for initialization
@@ -15,13 +15,8 @@ public class PaeDaeTest : MonoBehaviour
 	{
 		LabelMessage = "Initializing PaeDaeWrapper...";
 		
-		PaeDaeWrapper.Instance.onInitialized += onPaeDaeInitialized;	
-		PaeDaeWrapper.Instance.onOnInitializeFailed += onPaeDaeInitializeFailed;
-		PaeDaeWrapper.Instance.onAdWillDisplay += onAdWillDisplay;
-		PaeDaeWrapper.Instance.onAdWillUnload += onAdWillUnload;
-		PaeDaeWrapper.Instance.onAdUnavailable += onAdUnavailable;
-		
-		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c");    //replace with your app's key
+		//replace with your app's key
+		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c", gameObject.name); 
 		
 		Debug.Log ("Scene started");
 	}
@@ -39,19 +34,19 @@ public class PaeDaeTest : MonoBehaviour
 		Event Mouse = Event.current;
         if (Mouse.clickCount == 2)
         {
-            PaeDaeWrapper.Instance.ShowAd ("default.milestone");
+            PaeDaeWrapper.Instance.ShowAd ("default.milestone", gameObject.name);
         }
     }
 	
 	// PaeDaeWrapper init event handlers
-	void onPaeDaeInitialized ()
+	void PaeDaeInitialized ()
 	{
-	    string message = "PaeDaeWrapper has loaded.  Double click to show ad.";
+	    string message = "PaeDaeWrapper has loaded!";
 		Debug.Log (message);
 	    LabelMessage = message;
 	}
 	
-	void onPaeDaeInitializeFailed ()
+	void PaeDaeInitializeFailed ()
 	{
 		string message = "PaeDaeWrapper failed to load";
 		Debug.Log (message);
@@ -59,21 +54,28 @@ public class PaeDaeTest : MonoBehaviour
 	}
 	
 	// PaeDaeWrapper ShowAd event handlers
-	void onAdWillDisplay ()
+	void PaeDaeAdWillDisplay ()
 	{
 	    string message = "PaeDaeWrapper: ad unit has been shown";
 		Debug.Log (message);
 		LabelMessage = message;
 	}
 	
-	void onAdWillUnload ()
+	void PaeDaeAdUnloaded ()
 	{
 		string message = "PaeDaeWrapper: ad unit has been dismissed";
 		Debug.Log (message);
 		LabelMessage = message;
 	}
 	
-	void onAdUnavailable ()
+	void PaeDaeAdActionTaken ()
+	{
+    	string message = "PaeDaeWrapper: user has taken action in ad unit";
+		Debug.Log (message);
+		LabelMessage = message;	
+	}
+	
+	void PaeDaeAdUnavailable ()
 	{
 		string message = "PaeDaeWrapper: no ad available";
 		Debug.Log (message);

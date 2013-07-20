@@ -1,4 +1,5 @@
 /* PaeDae Unity Wrapper - v1.0.0
+ * iOS - v1.0.4
  * 
  * Copyright (c) 2012 PaeDae Inc. All rights reserved.
  * Greg Morrison, Anthony Doan, Miguel Morales
@@ -29,6 +30,13 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	public event onAdWillUnloadEvent onAdWillUnload = null;
 	public event onAdUnavailableEvent onAdUnavailable = null;
 	
+	// External function declarations implemented in C
+	[DllImport ("__Internal")]
+	private static extern void _PaeDaeWrapperInit (string gameObjectName, string key);
+	
+	[DllImport ("__Internal")]
+	private static extern void _PaeDaeWrapperShowAd (string gameObjectName, string zoneId);	
+
 	// Instantiate a singleton instance of the PaeDae Unity Wrapper 
 	public static PaeDaeWrapper Instance 
 	{
@@ -39,11 +47,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	}
 	
 	// Public API methods
-	public void Init (string key) 
+	public void Init (string appKey, string gameObjectName) 
 	{
 	    if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperInit (key);
+			_PaeDaeWrapperInit (appKey, gameObjectName);
 		}
 		else
 		{
@@ -51,11 +59,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 		}
 	}
 	
-	public void ShowAd (string zoneId) 
+	public void ShowAd (string zoneId, string gameObjectName) 
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperShowAd (zoneId);
+			_PaeDaeWrapperShowAd (zoneId, gameObjectName);
 		}
 		else
 		{
@@ -63,8 +71,9 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 		}
 	}
 	
+	/*
 	// PaeDae Init Delegate unity messages from C
-	public static void Initialized ()
+	public static void Initialized (string ignored)
 	{
 		if (instance.onInitialized != null) instance.onInitialized ();
 	}
@@ -89,11 +98,5 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	{
 		if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
 	}
-	
-	// External function declarations implemented in C
-	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperInit (string key);
-	
-	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperShowAd (string zoneId);
+	*/
 }
