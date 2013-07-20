@@ -46,7 +46,7 @@ public class PaeDaeTest : MonoBehaviour
 	// PaeDaeWrapper init event handlers
 	void onPaeDaeInitialized ()
 	{
-	    string message = "PaeDaeWrapper has loaded!";
+	    string message = "PaeDaeWrapper has loaded.  Double click to show ad.";
 		Debug.Log (message);
 	    LabelMessage = message;
 	}
