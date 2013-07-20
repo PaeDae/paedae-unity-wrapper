@@ -11,7 +11,4 @@
 
 @interface PaeDaeUnity : NSObject
 
-- (void) _PaeDaeWrapperInit:(const char *)key;
-- (void) _PaeDaeWrapperShowAd:(const char *)zoneId;
-
 @end
