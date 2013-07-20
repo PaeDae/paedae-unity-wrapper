@@ -24,12 +24,12 @@ extern "C"
         [[PaeDaeSDK sharedManager] initWithKey:[NSString stringWithUTF8String:key] andDelegate:[PaeDaeSharedDelegate sharedDelegate]];
     }
     
-    void _PaeDaeWrapperShowAd(const char *zone_id, const char *gameObjectName)
+    void _PaeDaeWrapperShowAd(const char *zoneId, const char *gameObjectName)
     {
 	    [PaeDaeSharedDelegate sharedDelegate].gameObjectName = [NSString stringWithUTF8String:gameObjectName];
 	    
         NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSString stringWithUTF8String:zone_id], @"zone_id"
+                                   [NSString stringWithUTF8String:zoneId], @"zone_id"
                                    , nil];
                                    
         [[PaeDaeSDK sharedManager] showAdWithOptions:options andDelegate:[PaeDaeSharedDelegate sharedDelegate]];

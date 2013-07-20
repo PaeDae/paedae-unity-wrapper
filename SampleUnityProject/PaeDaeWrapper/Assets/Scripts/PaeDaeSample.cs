@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class PaeDaeTest : MonoBehaviour 
+public class PaeDaeSample : MonoBehaviour 
 {
 	private string LabelMessage;
+	public GUIStyle LabelStyle;
 	
 	void Awake ()
 	{
-		Debug.Log ("Awake called w/ game object: " + gameObject.name);
+		
 	}
 	
 	// Use this for initialization
@@ -16,7 +17,7 @@ public class PaeDaeTest : MonoBehaviour
 		LabelMessage = "Initializing PaeDaeWrapper...";
 		
 		//replace with your app's key
-		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c", gameObject.name); 
+		PaeDaeWrapper.Instance.Init (this, "b00015e0-5cf7-012f-c818-12313f04f84c"); 
 		
 		Debug.Log ("Scene started");
 	}
@@ -29,19 +30,19 @@ public class PaeDaeTest : MonoBehaviour
 	
 	void OnGUI () 
 	{
-        GUI.Label(new Rect(10, 10, 500, 20), LabelMessage);
+        GUI.Label(new Rect(10, 10, 500, 250), LabelMessage, LabelStyle);
 		
 		Event Mouse = Event.current;
         if (Mouse.clickCount == 2)
         {
-            PaeDaeWrapper.Instance.ShowAd ("default.milestone", gameObject.name);
+            PaeDaeWrapper.Instance.ShowAd (this, "default.milestone");
         }
     }
 	
 	// PaeDaeWrapper init event handlers
 	void PaeDaeInitialized ()
 	{
-	    string message = "PaeDaeWrapper has loaded!";
+	    string message = "PaeDaeWrapper has loaded - double click to show ad unit";
 		Debug.Log (message);
 	    LabelMessage = message;
 	}

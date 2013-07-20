@@ -18,24 +18,14 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 {
 	private static readonly PaeDaeWrapper instance = new PaeDaeWrapper();
 	
-	public delegate void onInitializedEvent();
-	public delegate void onInitializeFailedEvent();
-	public delegate void onAdWillDisplayEvent();
-	public delegate void onAdWillUnloadEvent();
-	public delegate void onAdUnavailableEvent();
-	
-	public event onInitializedEvent onInitialized = null;
-	public event onInitializeFailedEvent onOnInitializeFailed = null;
-	public event onAdWillDisplayEvent onAdWillDisplay = null;
-	public event onAdWillUnloadEvent onAdWillUnload = null;
-	public event onAdUnavailableEvent onAdUnavailable = null;
+	public string gameObjectName;
 	
 	// External function declarations implemented in C
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperInit (string gameObjectName, string key);
+	private static extern void _PaeDaeWrapperInit (string key, string gameObjectName);
 	
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperShowAd (string gameObjectName, string zoneId);	
+	private static extern void _PaeDaeWrapperShowAd (string zoneId, string gameObjectName);	
 
 	// Instantiate a singleton instance of the PaeDae Unity Wrapper 
 	public static PaeDaeWrapper Instance 
@@ -47,56 +37,27 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	}
 	
 	// Public API methods
-	public void Init (string appKey, string gameObjectName) 
+	public void Init (MonoBehaviour script, string appKey) 
 	{
 	    if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperInit (appKey, gameObjectName);
+			_PaeDaeWrapperInit (appKey, script.gameObject.name);
 		}
 		else
 		{
-		    if (instance.onOnInitializeFailed != null) instance.onOnInitializeFailed ();
+			script.SendMessage("PaeDaeInitializeFailed");
 		}
 	}
 	
-	public void ShowAd (string zoneId, string gameObjectName) 
+	public void ShowAd (MonoBehaviour script, string zoneId) 
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperShowAd (zoneId, gameObjectName);
+			_PaeDaeWrapperShowAd (zoneId, script.gameObject.name);
 		}
 		else
 		{
-		    if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
+		    script.SendMessage("PaeDaeAdUnavailable");
 		}
 	}
-	
-	/*
-	// PaeDae Init Delegate unity messages from C
-	public static void Initialized (string ignored)
-	{
-		if (instance.onInitialized != null) instance.onInitialized ();
-	}
-	
-	public static void InitializeFailed ()
-	{
-		if (instance.onOnInitializeFailed != null) instance.onOnInitializeFailed ();
-	}
-	
-	// PaeDae Ad Delegate unity messages from 
-	public static void AdWillDisplay () 
-	{
-		if (instance.onAdWillDisplay != null) instance.onAdWillDisplay ();
-	}
-	
-	public static void AdWillUnload ()
-	{
-		if (instance.onAdWillUnload != null) instance.onAdWillUnload ();
-	}
-	
-	public static void AdUnavailable ()
-	{
-		if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
-	}
-	*/
 }

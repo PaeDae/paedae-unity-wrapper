@@ -49,7 +49,8 @@ static PaeDaeSharedDelegate *sharedDelegate = nil;
 
 - (void) PaeDae_AdActionTaken
 {
-    //TODO!	
+    NSLog(@"%s - PaeDae ad action has been taken", __FUNCTION__);
+    UnitySendMessage([self.gameObjectName UTF8String], "PaeDaeAdActionTaken", "");  
 }
 
 - (void) PaeDae_AdUnloaded
