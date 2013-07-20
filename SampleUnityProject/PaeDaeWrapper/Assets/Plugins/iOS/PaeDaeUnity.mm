@@ -26,3 +26,5 @@ extern "C"
         [[PaeDaeSDK sharedManager] showAdWithOptions:options andDelegate:[PaeDaeSharedDelegate sharedDelegate]];
     }
 }
+
+@end

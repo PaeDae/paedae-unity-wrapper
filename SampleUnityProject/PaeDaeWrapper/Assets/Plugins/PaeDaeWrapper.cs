@@ -15,13 +15,6 @@ using System.Runtime.InteropServices;
 
 public sealed class PaeDaeWrapper : MonoBehaviour 
 {
-	// External function declarations implemented in C
-	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperInit (string key);
-	
-	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperShowAd (string zoneId);	
-
 	private static readonly PaeDaeWrapper instance = new PaeDaeWrapper();
 	
 	public delegate void onInitializedEvent();
@@ -96,4 +89,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	{
 		if (instance.onAdUnavailable != null) instance.onAdUnavailable ();
 	}
+	
+	// External function declarations implemented in C
+	[DllImport ("__Internal")]
+	private static extern void _PaeDaeWrapperInit (string key);
+	
+	[DllImport ("__Internal")]
+	private static extern void _PaeDaeWrapperShowAd (string zoneId);
 }
