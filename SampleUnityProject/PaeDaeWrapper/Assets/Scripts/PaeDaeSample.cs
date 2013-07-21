@@ -17,7 +17,7 @@ public class PaeDaeSample : MonoBehaviour
 		LabelMessage = "Initializing PaeDaeWrapper...";
 		
 		//replace with your app's key
-		PaeDaeWrapper.Instance.Init (this, "b00015e0-5cf7-012f-c818-12313f04f84c"); 
+		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c", this.gameObject); 
 		
 		Debug.Log ("Scene started");
 	}
@@ -35,14 +35,14 @@ public class PaeDaeSample : MonoBehaviour
 		Event Mouse = Event.current;
         if (Mouse.clickCount == 2)
         {
-            PaeDaeWrapper.Instance.ShowAd (this, "default.milestone");
+            PaeDaeWrapper.Instance.ShowAd ("default.milestone", this.gameObject);
         }
     }
 	
 	// PaeDaeWrapper init event handlers
 	void PaeDaeInitialized ()
 	{
-	    string message = "PaeDaeWrapper has loaded - double click to show ad unit";
+	    string message = "PaeDaeWrapper loaded - double click to show";
 		Debug.Log (message);
 	    LabelMessage = message;
 	}
@@ -67,13 +67,6 @@ public class PaeDaeSample : MonoBehaviour
 		string message = "PaeDaeWrapper: ad unit has been dismissed";
 		Debug.Log (message);
 		LabelMessage = message;
-	}
-	
-	void PaeDaeAdActionTaken ()
-	{
-    	string message = "PaeDaeWrapper: user has taken action in ad unit";
-		Debug.Log (message);
-		LabelMessage = message;	
 	}
 	
 	void PaeDaeAdUnavailable ()

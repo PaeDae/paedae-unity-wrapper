@@ -37,11 +37,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 	}
 	
 	// Public API methods
-	public void Init (MonoBehaviour script, string appKey) 
+	public void Init (string appKey, GameObject gameObject) 
 	{
 	    if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperInit (appKey, script.gameObject.name);
+			_PaeDaeWrapperInit (appKey, gameObject.name);
 		}
 		else
 		{
@@ -49,11 +49,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 		}
 	}
 	
-	public void ShowAd (MonoBehaviour script, string zoneId) 
+	public void ShowAd (string milestoneId, GameObject gameObject) 
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperShowAd (zoneId, script.gameObject.name);
+			_PaeDaeWrapperShowAd (milestoneId, gameObject.name);
 		}
 		else
 		{
