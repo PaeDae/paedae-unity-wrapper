@@ -6,20 +6,25 @@ public class PaeDaeSample : MonoBehaviour
 	private string LabelMessage;
 	public GUIStyle LabelStyle;
 	
+	private PaeDaeManager PaeDae;
+	
 	void Awake ()
 	{
+		Debug.Log ("Awake called");
 		
+		// Initialize the PaeDaeWrapper instance and attach it to this script's game object
+		PaeDae = new PaeDaeManager(this.gameObject);
 	}
 	
 	// Use this for initialization
 	void Start () 
 	{
+		Debug.Log ("Start called");
+		
 		LabelMessage = "Initializing PaeDaeWrapper...";
 		
-		//replace with your app's key
-		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c", this.gameObject); 
-		
-		Debug.Log ("Scene started");
+		// Replace with your app's key, you only have to do this once in your app's lifecycle
+		PaeDae.Init ("b00015e0-5cf7-012f-c818-12313f04f84c"); 
 	}
 	
 	// Update is called once per frame
@@ -35,7 +40,7 @@ public class PaeDaeSample : MonoBehaviour
 		Event Mouse = Event.current;
         if (Mouse.clickCount == 2)
         {
-            PaeDaeWrapper.Instance.ShowAd ("default.milestone", this.gameObject);
+            PaeDae.ShowAd ("default.milestone");
         }
     }
 	

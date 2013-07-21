@@ -20,17 +20,6 @@ _Please note that the Unity Wrapper only supports iOS._
 1. Add AdSupport.framework under Targets->Build Phases.
 2. Add the following linker flags: `-lz -all_load -ObjC`
 
-#### PaeDae Wrapper API
-
-The PaeDaeWrapper API is accesses through using PaeDaeWrapper.Instance to call methods on it.
-Every API method requires that you pass a GameObject that will be sent messages about the PaeDae SDK's lifecycle.
-
-You need to first initialize the PaeDaeSDK by calling `PaeDaeWraper.Instance.Init`.
-Once the SDK has been loaded, you can show an ad unit by calling `PaeDaeWrapper.Instance.ShowAd`.
-
-Please see the sample code below for the API's method signatures.
-
-
 #### Sample Unity Project
 
 The sample Unity project includes all the files that are imported from the unity package.
@@ -46,20 +35,25 @@ public class PaeDaeSample : MonoBehaviour
 	private string LabelMessage;
 	public GUIStyle LabelStyle;
 	
+	private PaeDaeWrapper PaeDae;
+	
 	void Awake ()
 	{
+		Debug.Log ("Awake called");
 		
+		// Initialize the PaeDaeWrapper instance and attach it to this script's game object
+		PaeDae = new PaeDaeWrapper(this.gameObject);
 	}
 	
 	// Use this for initialization
 	void Start () 
 	{
+		Debug.Log ("Start called");
+		
 		LabelMessage = "Initializing PaeDaeWrapper...";
 		
-		//replace with your app's key
-		PaeDaeWrapper.Instance.Init ("b00015e0-5cf7-012f-c818-12313f04f84c", this.gameObject); 
-		
-		Debug.Log ("Scene started");
+		// Replace with your app's key, you only have to do this once in your app's lifecycle
+		PaeDae.Init ("b00015e0-5cf7-012f-c818-12313f04f84c"); 
 	}
 	
 	// Update is called once per frame
@@ -75,7 +69,7 @@ public class PaeDaeSample : MonoBehaviour
 		Event Mouse = Event.current;
         if (Mouse.clickCount == 2)
         {
-            PaeDaeWrapper.Instance.ShowAd ("default.milestone", this.gameObject);
+            PaeDae.ShowAd ("default.milestone");
         }
     }
 	

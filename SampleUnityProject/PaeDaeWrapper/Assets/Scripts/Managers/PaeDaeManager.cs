@@ -1,4 +1,4 @@
-/* PaeDae Unity Wrapper - v1.0.0
+/* PaeDae Unity Wrapper - v1.0.1
  * iOS - v1.0.4
  * 
  * Copyright (c) 2012 PaeDae Inc. All rights reserved.
@@ -14,34 +14,28 @@ using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-public sealed class PaeDaeWrapper : MonoBehaviour 
+public class PaeDaeManager : MonoBehaviour 
 {
-	private static readonly PaeDaeWrapper instance = new PaeDaeWrapper();
-	
-	public string gameObjectName;
+	private GameObject script;
 	
 	// External function declarations implemented in C
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperInit (string key, string gameObjectName);
+	private static extern void _PaeDaeWrapperInit (string key, string objectName);
 	
 	[DllImport ("__Internal")]
-	private static extern void _PaeDaeWrapperShowAd (string zoneId, string gameObjectName);	
-
-	// Instantiate a singleton instance of the PaeDae Unity Wrapper 
-	public static PaeDaeWrapper Instance 
+	private static extern void _PaeDaeWrapperShowAd (string milestoneId, string objectName);	
+	
+	public PaeDaeManager (GameObject caller)
 	{
-		get 
-		{
-	        return instance;
-		}
+	    script = caller;
 	}
 	
 	// Public API methods
-	public void Init (string appKey, GameObject gameObject) 
+	public void Init (string appKey) 
 	{
 	    if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperInit (appKey, gameObject.name);
+			_PaeDaeWrapperInit (appKey, script.name);
 		}
 		else
 		{
@@ -49,11 +43,11 @@ public sealed class PaeDaeWrapper : MonoBehaviour
 		}
 	}
 	
-	public void ShowAd (string milestoneId, GameObject gameObject) 
+	public void ShowAd (string milestoneId) 
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) 
 		{
-			_PaeDaeWrapperShowAd (milestoneId, gameObject.name);
+			_PaeDaeWrapperShowAd (milestoneId, script.name);
 		}
 		else
 		{
