@@ -35,14 +35,14 @@ public class PaeDaeSample : MonoBehaviour
 	private string LabelMessage;
 	public GUIStyle LabelStyle;
 	
-	private PaeDaeWrapper PaeDae;
+	private PaeDaeManager PaeDae;
 	
 	void Awake ()
 	{
 		Debug.Log ("Awake called");
 		
 		// Initialize the PaeDaeWrapper instance and attach it to this script's game object
-		PaeDae = new PaeDaeWrapper(this.gameObject);
+		PaeDae = new PaeDaeManager(this.gameObject);
 	}
 	
 	// Use this for initialization
