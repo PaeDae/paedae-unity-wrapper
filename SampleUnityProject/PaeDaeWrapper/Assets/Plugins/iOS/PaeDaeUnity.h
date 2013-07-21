@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "PaeDaeSDK.h"
 
-@interface PaeDaeUnityImpl : NSObject
-
-- (void)PaeDae_Initialized;
+@interface PaeDaeUnity : NSObject
 
 @end
