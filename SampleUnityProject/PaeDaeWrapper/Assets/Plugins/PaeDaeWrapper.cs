@@ -1,4 +1,4 @@
-/* PaeDae Unity Wrapper - v1.0.1
+/* PaeDae Unity Wrapper - v1.0.2
  * iOS - v1.0.4
  * 
  * Copyright (c) 2012 PaeDae Inc. All rights reserved.
@@ -14,7 +14,7 @@ using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-public class PaeDaeManager : MonoBehaviour 
+public class PaeDaeWrapper : MonoBehaviour 
 {
 	private GameObject script;
 	
@@ -25,7 +25,7 @@ public class PaeDaeManager : MonoBehaviour
 	[DllImport ("__Internal")]
 	private static extern void _PaeDaeWrapperShowAd (string milestoneId, string objectName);	
 	
-	public PaeDaeManager (GameObject caller)
+	public PaeDaeWrapper (GameObject caller)
 	{
 	    script = caller;
 	}
